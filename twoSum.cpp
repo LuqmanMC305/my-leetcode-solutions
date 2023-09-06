@@ -33,7 +33,8 @@ std::vector<int> twoSum(int arrNum[], int target, int size)
 }
 
 int main()
-{
+{   
+    //Test cases
     int arrNum[] = {2,5,11,0};
     int target = 2;
     int size = sizeof(arrNum)/sizeof(arrNum[0]);
