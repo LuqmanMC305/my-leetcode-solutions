@@ -1,2 +1,2 @@
 # my-leetcode-solutions
-This is my first time learning and practicing LeetCode questions.
+ Learning and practicing LeetCode questions with Data Structures & Algorithms.
