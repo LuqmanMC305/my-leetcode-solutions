@@ -28,7 +28,8 @@ void mergeSort(int arrNum[], int size)
    {
      rightPart[i - mid] = arrNum[i];
    }
-
+   
+   //Continue partitioning until the array size is 1
    mergeSort(leftPart, mid);
    mergeSort(rightPart, inputLength - mid);
 
