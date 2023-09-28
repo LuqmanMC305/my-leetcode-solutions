@@ -80,13 +80,13 @@ void merge(int arrNum[], int leftPart[], int rightPart[], int leftSize, int righ
 int main()
 {
     srand(time(0));
-    const int SIZE = 10;
+    const int SIZE = 20;
 
     int arrNum[SIZE];
 
     for(int i = 0; i < SIZE; i++)
     {
-        arrNum[i] = (rand() % 20) + 1;
+        arrNum[i] = (rand() % 100) + 1;
     }
 
     mergeSort(arrNum, SIZE);
