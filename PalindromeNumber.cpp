@@ -41,7 +41,7 @@ bool isPalindrome(int num)
 
 int main()
 {
-    int num = 1221;
+    int num = 121;
     
     if(isPalindrome(num))
     {
@@ -51,6 +51,6 @@ int main()
     {
        cout << "Not a palindrome" << endl;
     }
-    
+
     return 0;
 }
