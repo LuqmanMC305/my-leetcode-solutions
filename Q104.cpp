@@ -19,6 +19,9 @@ class BinaryTree
       Node* insertNode(Node* root, int newValue);
       void inOrderTraversal(Node* root);
       int maxDepth(Node* root);
+      void deleteNode(int targetValue);
+      Node* deleteNode(Node* node, int newValue);
+      Node* inOrderSuccessor(Node* root);
       ~BinaryTree()
       {
          deleteNode(root);
@@ -33,6 +36,63 @@ class BinaryTree
          }
       }
 };
+
+void BinaryTree::deleteNode(int targetValue)
+{
+    root = deleteNode(root, targetValue);
+}
+
+BinaryTree::Node* BinaryTree::inOrderSuccessor(Node* node)
+{
+    while(node->left)
+    {
+        node = node->left;
+    }
+
+    return node;
+
+}
+
+BinaryTree::Node* BinaryTree::deleteNode(Node* root, int targetValue)
+{
+   if(!root)
+   {
+      return root;
+   } 
+   else
+   {
+      if(targetValue > root->value)
+      {
+         root->right = deleteNode(root->right, targetValue);
+      }
+      else if(targetValue < root->value)
+      {
+         root->left = deleteNode(root->left, targetValue);
+      }
+      else
+      {
+         Node* temp;
+
+         if(!root->left)
+         {
+            return (root->right);
+         }
+         else if(!root->right)
+         {
+            return (root->left);
+         }
+         else
+         {
+            temp = inOrderSuccessor(root->right);
+            root->value = temp->value;
+            root->right = deleteNode(root->right, targetValue);
+
+         }
+      }
+   }
+
+   return root;
+}
 
 void BinaryTree::insertValue(int newValue)
 {
@@ -101,9 +161,11 @@ int main()
     tree.insertValue(14);
     tree.insertValue(13);
 
+    tree.deleteNode(3);
+
     tree.inOrderTraversal(tree.root);
 
 
-    cout << "\nMax Depth is: " << tree.maxDepth(tree.root);
+    //cout << "\nMax Depth is: " << tree.maxDepth(tree.root);
     return 0;
 }
