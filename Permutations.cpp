@@ -1,30 +1,36 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
-void recursiveDFS(vector<int> &num, vector<vector<int>> &result, int start)
+void backtrack(vector<int> &tempList, vector<vector<int>> &result, vector<int> &num)
 {
-    if(start == num.size()) //Base case
+  if(tempList.size() == num.size())
+  {
+    result.push_back(tempList);
+    return;
+  }
+  else
+  {
+    for(int i = 0; i < num.size(); i++)
     {
-        result.push_back(num); 
-        return;
-    }
+        if(find(tempList.begin(), tempList.end(), num[i]) != tempList.end()) continue;
+        else tempList.push_back(num[i]);
 
-    for(int i = start; i < num.size(); i++)
-    {
-        swap(num[start], num[i]); //Swap two elements
-        recursiveDFS(num, result, start + 1); 
-        swap(num[start], num[i]); //Undo swap
+        backtrack(tempList, result, num);
+        tempList.pop_back();
     }
+  }
 }
 
 vector<vector<int>> permute(vector<int> &num)
 {
     vector<vector<int>> result;
+    vector<int> tempList;
 
-    recursiveDFS(num, result, 0); //Start begins with 0
+    backtrack(tempList, result, num); //Start begins with 0
 
     return result;
 }
